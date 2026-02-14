@@ -3,22 +3,80 @@ import { DefaultTheme } from 'styled-components';
 export const lightTheme: DefaultTheme = {
   name: 'light',
   colors: {
-    background: '#ffffff',
-    primary: '#131118',
-    secondary: '#A4A1AA',
-    error: '#f63c3c',
-    additional: '#f6f6f6',
+    primary: {
+      main: '#F16F33',
+      high: '#EB5611',
+      highest: '#DA4601',
+      onPrimary: '#DA4601',
+    },
+    secondary: {
+      main: '#FFD6C0',
+      high: '#FFC2A2',
+      highest: '#FFB48C',
+      onSecondary: '#FA742D',
+    },
+    disabled: {
+      main: '#DFDFDF',
+      onDisabled: '#A3A3A3',
+    },
+    container: {
+      neutral: '#EEF2F5',
+      neutralHigh: '#DFE3E5',
+      neutralHighest: '#CED4D7',
+      onNeutral: '#303030',
+    },
+    surface: {
+      default: '#FAF6EF',
+      bright: '#FFFFFF',
+      containerLowest: '#FFFBF5',
+      containerLow: '#FAF6EF',
+      container: '#F5F0E8',
+      containerHigh: '#EEE8DF',
+      containerHighest: '#E5DDD1',
+      onSurface: '#E5DDD1',
+      onSurfaceVariant: '#7A7B7A',
+      opacity: '#FFFFFFCC',
+    },
   },
 };
 
 export const darkTheme: DefaultTheme = {
   name: 'dark',
   colors: {
-    background: '#000000',
-    primary: '#00b96b',
-    secondary: '#A4A1AA',
-    error: '#f63c3c',
-    additional: '#e4e4e4',
+    primary: {
+      main: '#F16F33',
+      high: '#EB5611',
+      highest: '#DA4601',
+      onPrimary: '#DA4601',
+    },
+    secondary: {
+      main: '#FFD6C0',
+      high: '#FFC2A2',
+      highest: '#FFB48C',
+      onSecondary: '#FA742D',
+    },
+    disabled: {
+      main: '#DFDFDF',
+      onDisabled: '#A3A3A3',
+    },
+    container: {
+      neutral: '#EEF2F5',
+      neutralHigh: '#DFE3E5',
+      neutralHighest: '#CED4D7',
+      onNeutral: '#303030',
+    },
+    surface: {
+      default: '#FAF6EF',
+      bright: '#FFFFFF',
+      containerLowest: '#FFFBF5',
+      containerLow: '#FAF6EF',
+      container: '#F5F0E8',
+      containerHigh: '#EEE8DF',
+      containerHighest: '#E5DDD1',
+      onSurface: '#E5DDD1',
+      onSurfaceVariant: '#7A7B7A',
+      opacity: '#FFFFFFCC',
+    },
   },
 };
 

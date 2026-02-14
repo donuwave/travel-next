@@ -1,15 +1,18 @@
 import React, { FC, PropsWithChildren } from 'react';
 
-import { AntdDesignProvider } from './AntdDesignProvider';
-import { StyledComponentsRegistry } from './StyledComponentsProvider';
-import { ThemeConfigProvider } from './ThemeConfigProvider';
+import { StyledComponentsProvider } from './StyledComponentsProvider';
+import { ThemeProvider } from './ThemeProvider';
+import { RootStyleRegistry } from './RootStyleRegistery';
+import { StyledComponentsRegistry } from './StyledComponentsRegistry';
 
 export const Providers: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <StyledComponentsRegistry>
-      <AntdDesignProvider>
-        <ThemeConfigProvider>{children}</ThemeConfigProvider>
-      </AntdDesignProvider>
-    </StyledComponentsRegistry>
+    <StyledComponentsProvider>
+      <ThemeProvider>
+        <RootStyleRegistry>
+          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        </RootStyleRegistry>
+      </ThemeProvider>
+    </StyledComponentsProvider>
   );
 };

@@ -30,11 +30,6 @@ export const SFormMain = styled.div`
 
 export const SCheckbox = styled(Checkbox)`
   .ant-checkbox-label {
-    font-family: Inter, serif;
-    font-size: 12px;
-    font-weight: 400;
-    color: #808080;
-
     & a {
       text-decoration: underline;
     }

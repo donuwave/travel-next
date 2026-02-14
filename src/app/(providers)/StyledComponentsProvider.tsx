@@ -1,21 +1,14 @@
 'use client';
 
-import { useServerInsertedHTML } from 'next/navigation';
-import React, { FC, PropsWithChildren, useState } from 'react';
-import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
+import { getStylesTheme } from '@/shared/config';
+import { FC, PropsWithChildren } from 'react';
+import { useGlobalStore } from '@/entities/global-settings';
+import { ThemeProvider } from 'styled-components';
 
-export const StyledComponentsRegistry: FC<PropsWithChildren> = ({ children }) => {
-  const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet());
+export const StyledComponentsProvider: FC<PropsWithChildren> = ({ children }) => {
+  const { theme } = useGlobalStore();
 
-  useServerInsertedHTML(() => {
-    const styles = styledComponentsStyleSheet.getStyleElement();
-    styledComponentsStyleSheet.instance.clearTag();
-    return <>{styles}</>;
-  });
+  const themeStyles = getStylesTheme(theme);
 
-  if (typeof window !== 'undefined') return <>{children}</>;
-
-  return (
-    <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>{children}</StyleSheetManager>
-  );
+  return <ThemeProvider theme={themeStyles}>{children}</ThemeProvider>;
 };
