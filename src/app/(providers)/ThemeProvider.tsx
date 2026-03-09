@@ -1,13 +1,13 @@
 'use client';
 
-import React, { FC, PropsWithChildren, useEffect, useState } from 'react';
-import { useTheme } from 'styled-components';
-import ru from 'dayjs/locale/ru';
+import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
+import ru from 'dayjs/locale/ru';
 import timezone from 'dayjs/plugin/timezone';
-import { ConfigProvider } from 'antd';
+import utc from 'dayjs/plugin/utc';
+import React, { FC, PropsWithChildren, useEffect, useState } from 'react';
+import { useTheme } from 'styled-components';
 
 import '@ant-design/v5-patch-for-react-19';
 import { getAntdTheme } from '@/shared/config';

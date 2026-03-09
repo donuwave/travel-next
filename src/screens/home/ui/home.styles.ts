@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { styled } from 'styled-components';
 
 export const SHome = styled.div``;
@@ -11,6 +12,10 @@ export const SBestToursContainer = styled.div`
   padding: 64px 0 128px 0;
   position: relative;
   z-index: 1;
+
+  @media (max-width: 1024px) {
+    padding: 64px 16px 16px 16px;
+  }
 `;
 
 export const STitle = styled.h2`
@@ -37,14 +42,48 @@ export const STourList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const SCardLink = styled(Link)`
+  display: block;
 `;
 
 export const STourInformation = styled.div`
   display: grid;
   grid-template-columns: 1.9fr 1.1fr;
+  grid-template-areas:
+    'info form'
+    'connection form';
   padding-top: 140px;
-  align-items: center;
+  align-items: start;
   gap: 64px;
+
+  & > :nth-child(1) {
+    grid-area: info;
+  }
+
+  & > :nth-child(2) {
+    grid-area: form;
+    align-self: center;
+  }
+
+  & > :nth-child(3) {
+    grid-area: connection;
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'info'
+      'form'
+      'connection';
+    padding-top: 64px;
+    gap: 24px;
+  }
 `;
 
 export const SBestTours = styled.div`

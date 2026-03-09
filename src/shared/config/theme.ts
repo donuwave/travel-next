@@ -1,5 +1,5 @@
-import { DefaultTheme } from 'styled-components';
 import { ThemeConfig } from 'antd';
+import { DefaultTheme } from 'styled-components';
 
 export const getAntdTheme = (theme: DefaultTheme): ThemeConfig => {
   return {
@@ -29,6 +29,12 @@ export const getAntdTheme = (theme: DefaultTheme): ThemeConfig => {
         fontWeight: 500,
       },
       Menu: {},
+      DatePicker: {
+        colorBorder: '#E5E5E5',
+        hoverBorderColor: '#A3A3A3',
+        activeBorderColor: '#A3A3A3',
+        activeShadow: '#D4D4D4FF',
+      },
     },
   };
 };

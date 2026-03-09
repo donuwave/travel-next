@@ -1,9 +1,10 @@
 'use client';
 
-import { getStylesTheme } from '@/shared/config';
 import { FC, PropsWithChildren } from 'react';
-import { useGlobalStore } from '@/entities/global-settings';
 import { ThemeProvider } from 'styled-components';
+
+import { useGlobalStore } from '@/entities/global-settings';
+import { getStylesTheme } from '@/shared/config';
 
 export const StyledComponentsProvider: FC<PropsWithChildren> = ({ children }) => {
   const { theme } = useGlobalStore();

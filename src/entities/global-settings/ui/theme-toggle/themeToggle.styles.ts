@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 export const SThemeToggle = styled.div`
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.additional};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.surface.containerHighest};
   padding: 18px 0;
 `;
 

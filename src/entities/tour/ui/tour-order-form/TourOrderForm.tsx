@@ -1,8 +1,9 @@
 'use client';
 
-import React from 'react';
-import { SCheckbox, SForm, SFormMain, STitle, STourOrderForm } from './tourOrderForm.styles';
 import { Button, Input } from 'antd';
+import React from 'react';
+
+import { SCheckbox, SForm, SFormMain, STitle, STourOrderForm } from './tourOrderForm.styles';
 
 export const TourOrderForm = () => {
   return (

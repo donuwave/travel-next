@@ -1,39 +1,26 @@
-FROM node:18-alpine AS deps
+FROM node:20-alpine AS base
 WORKDIR /app
 
-# включаем corepack и активируем нужную версию Yarn
-RUN corepack enable \
- && corepack prepare yarn@4.9.2 --activate
+FROM base AS deps
+COPY package.json package-lock.json ./
+RUN npm ci
 
-# заставляем Yarn использовать классический node_modules
-RUN echo "nodeLinker: node-modules" > .yarnrc.yml
-
-# копируем только package*.json и lockfile
-COPY package.json yarn.lock ./
-
-# ставим прод-зависимости
-RUN yarn install
-
-# ─── 2. builder: копируем исходники и билдим ───
-FROM node:18-alpine AS builder
-WORKDIR /app
-
-COPY . .
+FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+RUN npm run build
 
-RUN yarn build
-
-# ─── 3. runner: минимальный образ для запуска ───
-FROM node:18-alpine AS runner
+FROM node:20-alpine AS runner
 WORKDIR /app
-ENV NODE_ENV=production
 
-COPY --from=builder /app/package.json ./
-COPY --from=builder /app/next.config.ts ./
-COPY --from=builder /app/.next ./.next
+ENV NODE_ENV=production
+ENV HOSTNAME=0.0.0.0
+ENV PORT=3000
+
 COPY --from=builder /app/public ./public
-# теперь эта папка точно есть
-COPY --from=deps    /app/node_modules ./node_modules
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 
 EXPOSE 3000
-CMD ["npx", "next", "start"]
+
+CMD ["node", "server.js"]

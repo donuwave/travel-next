@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
+
 import { Footer } from '@/widgets/footer';
+import { Header } from '@/widgets/header';
 
 type PublicLayoutProps = Readonly<{
   children: ReactNode;
@@ -8,7 +10,7 @@ type PublicLayoutProps = Readonly<{
 export default function PublicLayout({ children }: PublicLayoutProps) {
   return (
     <div>
-      <div>Header</div>
+      <Header />
       {children}
       <Footer />
     </div>

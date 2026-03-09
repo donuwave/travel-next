@@ -1,11 +1,5 @@
 import { styled } from 'styled-components';
 
-export const STourOffer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 64px;
-`;
-
 export const SInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -48,6 +42,12 @@ export const SLinkConnection = styled.div`
   display: flex;
   align-items: center;
   gap: 48px;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    align-items: start;
+    gap: 16px;
+  }
 `;
 
 export const SLink = styled.a`
@@ -61,4 +61,9 @@ export const STextLink = styled.p`
   font-weight: 500;
   font-size: 16px;
   color: black;
+  transition: 0.3s all;
+
+  &:hover {
+    color: #fa742dff;
+  }
 `;

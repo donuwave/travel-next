@@ -1,3 +1,5 @@
+@import '@yandex/ymaps3-default-ui-theme/dist/esm/index.css';
+
 :root {
     --font-geist-sans: 'Geist', sans-serif;
     --font-geist-mono: 'Geist Mono', monospace;
@@ -20,6 +22,16 @@ body {
     color: #000;
 
     font-family: var(--font-geist-sans);
+}
+
+body {
+    padding-top: 96px;
+}
+
+@media (max-width: 1024px) {
+    body {
+        padding-top: 76px;
+    }
 }
 
 img,
@@ -53,6 +65,17 @@ select {
 
 button {
     cursor: pointer;
+}
+
+selena-widget {
+    --primary-color: #fa742d;
+}
+
+selena-widget button,
+selena-widget [type='submit'] {
+    background: #fa742d !important;
+    border-color: #fa742d !important;
+    color: #fff !important;
 }
 
 /* Reduce motion for users who prefer it */
