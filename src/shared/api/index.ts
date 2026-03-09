@@ -13,6 +13,20 @@ type RequestConfig = {
 
 const isServer = typeof window === 'undefined';
 
+const logOnDev = (message: string) => {
+  if (process.env.NODE_ENV !== 'production' || isServer) {
+    console.log(
+      new Intl.DateTimeFormat('ru-RU', {
+        day: '2-digit',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+      }).format(new Date()),
+      message
+    );
+  }
+};
+
 const buildUrl = (url: string, params?: RequestConfig['params']) => {
   const base = isServer ? API_BASE_URL : '';
   const requestUrl = new URL(url, `${base || 'http://localhost'}`);
@@ -35,21 +49,34 @@ export const API = async <T>({
   headers,
   next,
 }: RequestConfig): Promise<{ data: T }> => {
-  const response = await fetch(buildUrl(url, params), {
-    method,
-    body,
-    headers: {
-      'Content-Type': 'application/json',
-      ...headers,
-    },
-    next,
-  });
+  const requestUrl = buildUrl(url, params);
+  const runtime = isServer ? 'server' : 'client';
 
-  if (!response.ok) {
-    throw new Error(`Request failed: ${response.status}`);
+  logOnDev(`🚀 [API:${runtime}] ${method} ${requestUrl} | Request`);
+
+  try {
+    const response = await fetch(requestUrl, {
+      method,
+      body,
+      headers: {
+        'Content-Type': 'application/json',
+        ...headers,
+      },
+      next,
+    });
+
+    logOnDev(`✅ [API:${runtime}] ${method} ${requestUrl} | Response ${response.status}`);
+
+    if (!response.ok) {
+      throw new Error(`Request failed: ${response.status}`);
+    }
+
+    const data = (await response.json()) as T;
+
+    return { data };
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    logOnDev(`🚨 [API:${runtime}] ${method} ${requestUrl} | Error ${message}`);
+    throw error;
   }
-
-  const data = (await response.json()) as T;
-
-  return { data };
 };

@@ -21,8 +21,7 @@ export const getCategoriesList = async (): Promise<ICategoryCard[]> => {
     }
 
     return convertationCategoriesList(data);
-  } catch (error) {
-    console.error(getCategoriesListKey, error);
+  } catch {
     return [];
   }
 };

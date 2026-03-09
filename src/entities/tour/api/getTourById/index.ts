@@ -21,8 +21,7 @@ export const getTourById = async ({ id }: IGetTourById): Promise<ITourById | nul
     }
 
     return convertationTourById(data);
-  } catch (error) {
-    console.error(getTourByIdKey, error);
+  } catch {
     return null;
   }
 };

@@ -22,8 +22,7 @@ export const getToursList = async ({ categoryId }: IGetToursList): Promise<ITour
     }
 
     return convertationToursList(data);
-  } catch (error) {
-    console.error(getToursListKey, error);
+  } catch {
     return [];
   }
 };
