@@ -42,29 +42,38 @@ const defaultCategoryMeta: CategoryCardMeta = {
   heroBackground: '#f5f0e8',
 };
 
-export const convertationCategoriesList = (data: IAPIGetCategoriesList): ICategoryCard[] => {
-  return data.map((category, index) => {
-    const meta =
-      categoryCardMetaSequence[index % categoryCardMetaSequence.length] ?? defaultCategoryMeta;
-    const price =
-      typeof category.cat_price === 'number'
-        ? category.cat_price.toLocaleString('ru-RU')
-        : typeof category.cat_price === 'string' && category.cat_price.trim()
-          ? category.cat_price
-          : '0';
-    const description = category.cat_description?.trim() || '';
+const getCategoryMeta = (id: number) => {
+  if (id > 0) {
+    return categoryCardMetaSequence[(id - 1) % categoryCardMetaSequence.length] ?? defaultCategoryMeta;
+  }
 
-    return {
-      id: category.id,
-      title: category.category_name,
-      image: getAssetUrl(category.category_photo_url) || '/tour.png',
-      shortDescription: description,
-      description,
-      price,
-      heroBackground: meta.heroBackground,
-      Icon: meta.Icon,
-      iconColors: meta.iconColors,
-      color: meta.color,
-    };
-  });
+  return defaultCategoryMeta;
+};
+
+export const convertCategory = (category: IAPIGetCategoriesList[number]): ICategoryCard => {
+  const meta = getCategoryMeta(category.id);
+  const price =
+    typeof category.cat_price === 'number'
+      ? category.cat_price.toLocaleString('ru-RU')
+      : typeof category.cat_price === 'string' && category.cat_price.trim()
+        ? category.cat_price
+        : '0';
+  const description = category.cat_description?.trim() || '';
+
+  return {
+    id: category.id,
+    title: category.category_name,
+    image: getAssetUrl(category.category_photo_url) || '/tour.png',
+    shortDescription: description,
+    description,
+    price,
+    heroBackground: meta.heroBackground,
+    Icon: meta.Icon,
+    iconColors: meta.iconColors,
+    color: meta.color,
+  };
+};
+
+export const convertationCategoriesList = (data: IAPIGetCategoriesList): ICategoryCard[] => {
+  return data.map(convertCategory);
 };

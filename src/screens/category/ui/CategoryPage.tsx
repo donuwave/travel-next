@@ -9,7 +9,7 @@ import {
   TourOfferInfo,
   TourOrderForm,
 } from '@/entities/tour';
-import { getCategoriesList } from '@/entities/tour/api/getCategories';
+import { getCategoryById } from '@/entities/tour/api/getCategoryById';
 import { getToursList } from '@/entities/tour/api/getToursList';
 import { Subscribe } from '@/widgets/subscribe';
 
@@ -38,8 +38,7 @@ type CategoryPageProps = {
 };
 
 export const CategoryPage = async ({ id }: CategoryPageProps) => {
-  const categories = await getCategoriesList();
-  const category = categories.find((item) => String(item.id) === id);
+  const category = await getCategoryById({ id });
 
   if (!category) {
     notFound();
