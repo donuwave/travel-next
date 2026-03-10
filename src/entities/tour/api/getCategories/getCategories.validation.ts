@@ -5,7 +5,7 @@ export const ValidationSchema = array(
     id: number().required(),
     category_name: string().required(),
     category_photo_url: string().required(),
-    description: string().optional(),
-    price: mixed<string | number>().optional(),
+    cat_description: string().optional(),
+    cat_price: mixed<string | number>().optional(),
   }).required()
 ).required();

@@ -4,15 +4,15 @@ export type IAPIGetCategoriesListItem = {
   id: number;
   category_name: string;
   category_photo_url: string;
-  description?: string;
-  price?: string | number;
+  cat_description?: string;
+  cat_price?: string | number;
 };
 
 export type IAPIGetCategoriesList = IAPIGetCategoriesListItem[];
 
-export type ICategoryCard = ITourCard & {
+export type ICategoryCard = Omit<ITourCard, 'link'> & {
   id: number;
+  image: string;
   shortDescription: string;
   heroBackground: string;
-  heroImage: string;
 };

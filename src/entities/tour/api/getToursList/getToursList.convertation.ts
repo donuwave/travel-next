@@ -1,4 +1,5 @@
 import { BussExcursionsIcon, BussIcon, ButterflyIcon, InfinityShapeIcon } from '@/shared/assets';
+import { getAssetUrl } from '@/shared/config';
 
 import { IAPIGetTour, IAPIGetToursList, ITourListItem } from './getToursList.types';
 import { ITourCard } from '../../model/tourCard.types';
@@ -19,6 +20,14 @@ const getTourMeta = (index: number): TourCardMeta => {
 export const convertationTour = (tour: IAPIGetTour, index = 0): ITourListItem => {
   const meta = getTourMeta(index);
   const nextDate = tour.dates[0];
+  const photos = tour.photos.map((photo) => ({
+    ...photo,
+    tour_photo_url: getAssetUrl(photo.tour_photo_url),
+  }));
+  const category = {
+    ...tour.category,
+    category_photo_url: getAssetUrl(tour.category.category_photo_url),
+  };
 
   return {
     id: tour.id,
@@ -26,13 +35,13 @@ export const convertationTour = (tour: IAPIGetTour, index = 0): ITourListItem =>
     description: tour.description,
     rawPrice: tour.price,
     price: tour.price.toLocaleString('ru-RU'),
-    link: tour.photos[0]?.tour_photo_url || tour.category.category_photo_url || '/tour.png',
-    category: tour.category,
-    photos: tour.photos,
+    link: photos[0]?.tour_photo_url || category.category_photo_url || '/tour.png',
+    category,
+    photos,
     dates: tour.dates,
-    documentUrl: tour.document_url,
+    documentUrl: getAssetUrl(tour.document_url),
     documentSummary: {
-      categoryName: tour.category.category_name,
+      categoryName: category.category_name,
       nextDate: nextDate ? `${nextDate.start_date} - ${nextDate.end_date}` : undefined,
       slots: nextDate ? `${nextDate.booked_slots}/${nextDate.max_slots} мест занято` : undefined,
     },

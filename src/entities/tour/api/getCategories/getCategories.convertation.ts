@@ -1,4 +1,5 @@
 import { BussExcursionsIcon, BussIcon, ButterflyIcon, InfinityShapeIcon } from '@/shared/assets';
+import { getAssetUrl } from '@/shared/config';
 
 import { IAPIGetCategoriesList, ICategoryCard } from './getCategories.types';
 import { ITourCard } from '../../model/tourCard.types';
@@ -46,21 +47,20 @@ export const convertationCategoriesList = (data: IAPIGetCategoriesList): ICatego
     const meta =
       categoryCardMetaSequence[index % categoryCardMetaSequence.length] ?? defaultCategoryMeta;
     const price =
-      typeof category.price === 'number'
-        ? category.price.toLocaleString('ru-RU')
-        : typeof category.price === 'string' && category.price.trim()
-          ? category.price
+      typeof category.cat_price === 'number'
+        ? category.cat_price.toLocaleString('ru-RU')
+        : typeof category.cat_price === 'string' && category.cat_price.trim()
+          ? category.cat_price
           : '0';
-    const description = category.description?.trim() || '';
+    const description = category.cat_description?.trim() || '';
 
     return {
       id: category.id,
       title: category.category_name,
+      image: getAssetUrl(category.category_photo_url) || '/tour.png',
       shortDescription: description,
       description,
       price,
-      link: category.category_photo_url || '/tour.png',
-      heroImage: category.category_photo_url || '/tour.png',
       heroBackground: meta.heroBackground,
       Icon: meta.Icon,
       iconColors: meta.iconColors,

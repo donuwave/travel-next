@@ -73,7 +73,7 @@ export const CategoryPage = async ({ id }: CategoryPageProps) => {
             <category.Icon colors={category.iconColors} />
           </SHeroIconBack>
           <SHeroIconFront>
-            <category.Icon colors={category.iconColors} imageUrl={category.heroImage} />
+            <category.Icon colors={category.iconColors} imageUrl={category.image} />
           </SHeroIconFront>
         </SHeroVisual>
 

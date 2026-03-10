@@ -38,7 +38,7 @@ export const Home = async () => {
           <STourList>
             {categories.map((tour) => (
               <SCardLink key={tour.id} href={`/categories/${tour.id}`}>
-                <CategoryTourCard {...tour} />
+                <CategoryTourCard {...tour} link={tour.image} />
               </SCardLink>
             ))}
           </STourList>
