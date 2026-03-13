@@ -42,9 +42,11 @@ const defaultCategoryMeta: CategoryCardMeta = {
   heroBackground: '#f5f0e8',
 };
 
-const getCategoryMeta = (id: number) => {
+export const getCategoryMeta = (id: number): CategoryCardMeta => {
   if (id > 0) {
-    return categoryCardMetaSequence[(id - 1) % categoryCardMetaSequence.length] ?? defaultCategoryMeta;
+    return (
+      categoryCardMetaSequence[(id - 1) % categoryCardMetaSequence.length] ?? defaultCategoryMeta
+    );
   }
 
   return defaultCategoryMeta;

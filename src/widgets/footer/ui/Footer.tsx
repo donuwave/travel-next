@@ -5,6 +5,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import ReactDom from 'react-dom';
 
 import { CreateSiteIcon, MasterCardIcon, MirIcon, SbpIcon, VisaIcon } from '@/shared/assets';
+import { ROUTES } from '@/shared/config';
 
 import {
   SAddress,
@@ -285,7 +286,7 @@ export const Footer = () => {
             <SNav>
               <SLink href="">Автобусные туры на юг</SLink>
               <SLink href="">Экскурсионные туры</SLink>
-              <SLink href="">О нас</SLink>
+              <SLink href="/about">О нас</SLink>
               <SLink href="">Контакты</SLink>
             </SNav>
           </SNavElement>
@@ -321,9 +322,11 @@ export const Footer = () => {
               <div>Создание сайта</div>
             </SCreateWebsite>
 
-            <SSubLink href="">Политика конфиденциальности</SSubLink>
-            <SSubLink href="">Пользовательское соглашение</SSubLink>
-            <SSubLink href="">Обработка персональных данных</SSubLink>
+            <SSubLink href={ROUTES.PRIVACY_POLICY}>Политика конфиденциальности</SSubLink>
+            <SSubLink href={ROUTES.USER_AGREEMENT}>Пользовательское соглашение</SSubLink>
+            <SSubLink href={ROUTES.PERSONAL_DATA_PROCESSING}>
+              Обработка персональных данных
+            </SSubLink>
           </SBottomLeftFooter>
 
           <div>© Мечта-Тур, 2020-{currentYear}. Все права защищены.</div>

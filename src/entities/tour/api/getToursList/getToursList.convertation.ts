@@ -1,24 +1,10 @@
-import { BussExcursionsIcon, BussIcon, ButterflyIcon, InfinityShapeIcon } from '@/shared/assets';
 import { getAssetUrl } from '@/shared/config';
 
 import { IAPIGetTour, IAPIGetToursList, ITourListItem } from './getToursList.types';
-import { ITourCard } from '../../model/tourCard.types';
+import { getCategoryMeta } from '../getCategories/getCategories.convertation';
 
-type TourCardMeta = Pick<ITourCard, 'Icon' | 'color' | 'iconColors'>;
-
-const tourCardMetaSequence: TourCardMeta[] = [
-  { Icon: BussIcon, iconColors: ['#FFF9F0', '#FAF3E8'], color: '#F5F0E8' },
-  { Icon: BussExcursionsIcon, iconColors: ['#FFF9F0', '#FAF3E8'], color: '#F5F0E8' },
-  { Icon: InfinityShapeIcon, iconColors: ['#FFF9F0', '#FAF3E8'], color: '#F5F0E8' },
-  { Icon: ButterflyIcon, iconColors: ['#FFF9F0', '#FAF3E8'], color: '#F5F0E8' },
-];
-
-const getTourMeta = (index: number): TourCardMeta => {
-  return tourCardMetaSequence[index % tourCardMetaSequence.length];
-};
-
-export const convertationTour = (tour: IAPIGetTour, index = 0): ITourListItem => {
-  const meta = getTourMeta(index);
+export const convertationTour = (tour: IAPIGetTour): ITourListItem => {
+  const meta = getCategoryMeta(tour.category.id);
   const nextDate = tour.dates[0];
   const photos = tour.photos.map((photo) => ({
     ...photo,
@@ -46,11 +32,11 @@ export const convertationTour = (tour: IAPIGetTour, index = 0): ITourListItem =>
       slots: nextDate ? `${nextDate.booked_slots}/${nextDate.max_slots} мест занято` : undefined,
     },
     Icon: meta.Icon,
-    iconColors: meta.iconColors,
-    color: meta.color,
+    iconColors: ['#FFF9F0', '#FAF3E8'],
+    color: '#F5F0E8',
   };
 };
 
 export const convertationToursList = (data: IAPIGetToursList): ITourListItem[] => {
-  return data.map((tour, index) => convertationTour(tour, index));
+  return data.map(convertationTour);
 };

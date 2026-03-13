@@ -8,7 +8,9 @@ export const STourCard = styled.div<ISTourCard>`
   border-radius: 32px;
   display: grid;
   gap: 12px;
+  min-height: 326px;
   grid-template-columns: 0.8fr 1fr;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
     'title icon'
     'description icon'
@@ -16,7 +18,9 @@ export const STourCard = styled.div<ISTourCard>`
 
   @media (max-width: 1023px) {
     padding: 24px;
+    min-height: auto;
     grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
     grid-template-areas:
       'title'
       'description'
@@ -52,6 +56,7 @@ export const SIconUnFace = styled.div`
 
 export const SPrice = styled.span`
   grid-area: price;
+  align-self: end;
   font-family: 'Fira Sans', serif;
   font-weight: 700;
   font-size: 32px;
@@ -73,4 +78,8 @@ export const SDescription = styled.p`
   font-size: 16px;
   line-height: 120%;
   color: #7a7b7aff;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;

@@ -3,6 +3,7 @@ import type { NextConfig } from 'next';
 const apiBaseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
 const apiPrefix = '/api/v1';
 const apiUrl = new URL(apiBaseUrl);
+const docsBaseUrl = 'https://xn-----6kct8akavpcl7b.xn--p1ai';
 
 const nextConfig: NextConfig = {
   output: 'standalone',
@@ -31,6 +32,10 @@ const nextConfig: NextConfig = {
       {
         source: `${apiPrefix}/:path*`,
         destination: `${apiBaseUrl}${apiPrefix}/:path*`,
+      },
+      {
+        source: '/static/docs/:path*',
+        destination: `${docsBaseUrl}/static/docs/:path*`,
       },
     ];
   },

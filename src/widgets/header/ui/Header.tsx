@@ -4,6 +4,7 @@ import { Drawer, Dropdown } from 'antd';
 import React, { useRef, useState } from 'react';
 
 import { Logo, MailIconSolid, PhoneIconSolid } from '@/shared/assets';
+import { ROUTES } from '@/shared/config';
 import { useClickOutside } from '@/shared/hooks';
 
 import {
@@ -30,7 +31,7 @@ import {
 const navigation = [
   { label: 'Автобусные туры на юг', href: '/categories/bus-tours' },
   { label: 'Экскурсионные туры', href: '/categories/excursion-tours' },
-  { label: 'О нас', href: '#contacts' },
+  { label: 'О нас', href: ROUTES.ABOUT },
   { label: 'Контакты', href: '#contacts' },
 ];
 

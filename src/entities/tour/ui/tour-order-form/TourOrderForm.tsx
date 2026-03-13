@@ -1,7 +1,10 @@
 'use client';
 
 import { Button, Input } from 'antd';
+import Link from 'next/link';
 import React from 'react';
+
+import { ROUTES } from '@/shared/config';
 
 import { SCheckbox, SForm, SFormMain, STitle, STourOrderForm } from './tourOrderForm.styles';
 
@@ -19,8 +22,10 @@ export const TourOrderForm = () => {
 
         <SCheckbox>
           Нажимая на кнопку «Обсудить задачу», подтверждаю своё согласие с{' '}
-          <a onClick={(e) => e.preventDefault()}>положениями политики</a> конфиденциальности и даю{' '}
-          <a onClick={(e) => e.preventDefault()}>согласие на обработку персональных данных</a>
+          <Link href={ROUTES.PRIVACY_POLICY}>положениями политики конфиденциальности</Link> и даю{' '}
+          <Link href={ROUTES.PERSONAL_DATA_PROCESSING}>
+            согласие на обработку персональных данных
+          </Link>
         </SCheckbox>
 
         <Button type="primary" size="large">
